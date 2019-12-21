@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Provider } from 'react-redux'
 import NavContainer from './src/screens'
 import store from './src/store'

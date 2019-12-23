@@ -1,1 +1,1 @@
-export type LocationType = [number, number];
+export type LocationType = [number, number]

@@ -9,6 +9,7 @@ export type ArticleType = {
   updatedAt: string | undefined
   location: LocationType | undefined
   tags: TagListType[]
+  isHomeContent?: boolean
 }
 
 export type ArticleListType = ArticleType[]

@@ -1,9 +1,9 @@
-import { NavigationStackScreenProps } from 'react-navigation-stack';
+import { NavigationStackScreenProps } from 'react-navigation-stack'
 
 export type ComponentProps = {
-  styles?: [];
-};
+  styles?: []
+}
 
 export type ScreenProps = {
-  navigation: NavigationStackScreenProps;
-};
+  navigation: NavigationStackScreenProps
+}

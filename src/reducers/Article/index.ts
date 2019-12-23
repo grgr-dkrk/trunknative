@@ -1,12 +1,19 @@
-import { initialArticleState, ArticleStateType } from './state'
 import {
-  ArticleActionTypes,
+  initialArticleState,
+  ArticleStateType,
+  initialArticleData,
+} from './state'
+import { ArticleActionTypes } from './actions'
+import { ArticleListType } from 'src/types/Article'
+import {
   ADD_ARTICLE,
   REMOVE_ARTICLE,
   EDIT_ARTICLE,
   SET_ARTICLE_LIST,
-} from './actions'
-import { ArticleListType } from 'src/types/Article'
+  SET_CURRENT_ARTICLE,
+  EDIT_CURRENT_ARTICLE,
+  INIT_CURRENT_ARTICLE,
+} from './actionTypes'
 
 export function ArticleReducer(
   state = initialArticleState,
@@ -38,6 +45,24 @@ export function ArticleReducer(
       return {
         ...state,
         items: action.payload,
+      }
+    case SET_CURRENT_ARTICLE:
+      return {
+        ...state,
+        currentItem:
+          state.items.find(item => item.id === action.payload) ||
+          // TODO FIX_ME case if id is invalid
+          initialArticleData,
+      }
+    case EDIT_CURRENT_ARTICLE:
+      return {
+        ...state,
+        currentItem: { ...state.currentItem, ...action.payload },
+      }
+    case INIT_CURRENT_ARTICLE:
+      return {
+        ...state,
+        currentItem: initialArticleData,
       }
     default:
       const _: never = action

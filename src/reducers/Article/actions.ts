@@ -1,13 +1,17 @@
 import { ArticleType, ArticleListType } from 'src/types/Article'
+import {
+  ADD_ARTICLE,
+  REMOVE_ARTICLE,
+  EDIT_ARTICLE,
+  SET_ARTICLE_LIST,
+  SET_CURRENT_ARTICLE,
+  EDIT_CURRENT_ARTICLE,
+  INIT_CURRENT_ARTICLE,
+} from './actionTypes'
 
-export const ADD_ARTICLE = 'ADD_ARTICLE' as const
-export const REMOVE_ARTICLE = 'REMOVE_ARTICLE' as const
-export const EDIT_ARTICLE = 'EDIT_ARTICLE' as const
-export const SET_ARTICLE_LIST = 'SET_ARTICLE_LIST' as const
-export const FETCH_ARTICLE_START = 'FETCH_ARTICLE_START' as const
-export const FETCH_ARTICLE_SUCCEED = 'FETCH_ARTICLE_SUCCEED' as const
-export const FETCH_ARTICLE_FAILUED = 'FETCH_ARTICLE_FAILUED' as const
-
+/**
+ * ArticleList Actions
+ */
 export const addArticle = (payload: ArticleType) => ({
   type: ADD_ARTICLE,
   payload,
@@ -31,8 +35,31 @@ export const setArticleList = (payload: ArticleListType) => ({
   payload,
 })
 
+/**
+ * Current Article Actions
+ */
+export const setCurrentArticle = (payload: ArticleType['id']) => ({
+  type: SET_CURRENT_ARTICLE,
+  payload,
+})
+
+export const editCurrentArticle = (payload: ArticleType) => ({
+  type: EDIT_CURRENT_ARTICLE,
+  payload,
+})
+
+export const initCurrentArticle = () => ({
+  type: INIT_CURRENT_ARTICLE,
+})
+
+/**
+ * Action Types
+ */
 export type ArticleActionTypes =
   | ReturnType<typeof addArticle>
   | ReturnType<typeof removeArticle>
   | ReturnType<typeof editArticle>
   | ReturnType<typeof setArticleList>
+  | ReturnType<typeof setCurrentArticle>
+  | ReturnType<typeof editCurrentArticle>
+  | ReturnType<typeof initCurrentArticle>

@@ -1,7 +1,18 @@
-import { ArticleListType } from 'src/types/Article'
+import { ArticleListType, ArticleType } from '../../types/Article'
 
 export type ArticleStateType = {
   items: ArticleListType
+  currentItem: ArticleType
+}
+
+export const initialArticleData: Readonly<ArticleType> = {
+  id: '',
+  title: '',
+  content: '',
+  createdAt: '',
+  updatedAt: undefined,
+  location: undefined,
+  tags: [],
 }
 
 export const initialArticleState: ArticleStateType = {
@@ -18,4 +29,13 @@ export const initialArticleState: ArticleStateType = {
       tags: [],
     },
   ],
+  currentItem: {
+    id: '',
+    title: '',
+    content: '',
+    createdAt: '',
+    updatedAt: undefined,
+    location: undefined,
+    tags: [],
+  },
 }

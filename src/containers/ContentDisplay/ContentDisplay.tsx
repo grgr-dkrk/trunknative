@@ -4,9 +4,7 @@ import { ContentDisplay as Component } from '../../components/organisms/ContentD
 import { useSelector } from 'react-redux'
 import { AppState } from '../../store'
 
-type ContentDisplayProps = ScreenProps & {
-  content: string
-}
+type ContentDisplayProps = ScreenProps
 
 export const ContentDisplay: React.FC<ContentDisplayProps> = props => {
   const ArticleState = useSelector((state: AppState) => state.ArticleReducer)

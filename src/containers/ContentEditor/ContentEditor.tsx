@@ -6,7 +6,7 @@ import { AppState } from '../../store'
 import {
   editCurrentArticle,
   setCurrentArticle,
-} from 'src/reducers/Article/actions'
+} from '../../reducers/Article/actions'
 
 type ContentEditorProps = ScreenProps
 
@@ -15,7 +15,7 @@ export const ContentEditor: React.FC<ContentEditorProps> = props => {
     (state: AppState) => state.ArticleReducer.currentItem
   )
   const dispatch = useDispatch()
-  const id = props.navigation.navigation.getParam('id')
+  const id = props.navigation.getParam('id')
 
   useEffect(() => {
     dispatch(setCurrentArticle(id))

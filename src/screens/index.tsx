@@ -12,14 +12,14 @@ const AppNavigator = createStackNavigator(
       screen: HomeScreen,
       navigationOptions: props => ({
         title: LABELS.HOME,
-        header: () => <Header navigation={props} />,
+        header: () => <Header navigation={props.navigation} />,
       }),
     },
     Editor: {
       screen: EditorScreen,
       navigationOptions: props => ({
         title: props.navigation.getParam('title'),
-        header: () => <Header navigation={props} />,
+        header: () => <Header navigation={props.navigation} />,
       }),
     },
   },

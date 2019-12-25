@@ -2,24 +2,46 @@ import React from 'react'
 import { SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
 import { ScreenProps } from '../../../types/ComponentProps'
 import { Heading } from '../../../components/atoms/Heading/'
-import { Paragraph } from '../../../components/atoms/Paragraph'
 import { LABELS } from '../../../constants/labels'
 
 type HeaderProps = ScreenProps & {
   handleGoToCreateArticle: () => void
   handleGoToEditArticle: () => void
+  handleCancelEdit: () => void
+  handleSaveEdit: () => void
 }
 
 export const Header: React.FC<HeaderProps> = props => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <TouchableOpacity onPress={props.handleGoToCreateArticle}>
-        <Paragraph>{LABELS.NEW}</Paragraph>
-      </TouchableOpacity>
-      <Heading level={1}>{props.navigation.navigation.state.routeName}</Heading>
-      <TouchableOpacity onPress={props.handleGoToEditArticle}>
-        <Paragraph>{LABELS.EDIT}</Paragraph>
-      </TouchableOpacity>
+      {/* New, Cancel */}
+      {props.navigation.state.routeName === 'Editor' ? (
+        <TouchableOpacity onPress={props.handleCancelEdit}>
+          <Heading level={1}>{LABELS.CANCEL}</Heading>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={props.handleGoToCreateArticle}>
+          <Heading level={1}>{LABELS.NEW}</Heading>
+        </TouchableOpacity>
+      )}
+      {/* PageName */}
+      {props.navigation.state.routeName === 'Editor' ? (
+        <TouchableOpacity onPress={props.handleGoToCreateArticle}>
+          <Heading level={1}>{LABELS.SAVE}</Heading>
+        </TouchableOpacity>
+      ) : (
+        <Heading level={1}>{props.navigation.state.routeName}</Heading>
+      )}
+      {/* Edit, Save */}
+      {props.navigation.state.routeName === 'Editor' ? (
+        <TouchableOpacity onPress={props.handleSaveEdit}>
+          <Heading level={1}>{LABELS.SAVE}</Heading>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={props.handleGoToEditArticle}>
+          <Heading level={1}>{LABELS.EDIT}</Heading>
+        </TouchableOpacity>
+      )}
     </SafeAreaView>
   )
 }

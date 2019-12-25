@@ -1,5 +1,7 @@
 export const LABELS = {
   HOME: 'Home',
-  NEW: 'new',
-  EDIT: 'edit',
+  NEW: 'New',
+  EDIT: 'Edit',
+  CANCEL: 'Cancel',
+  SAVE: 'Save',
 } as const

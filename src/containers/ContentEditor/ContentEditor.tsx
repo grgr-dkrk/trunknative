@@ -4,8 +4,8 @@ import { ContentEditor as Component } from '../../components/organisms/ContentEd
 import { useSelector, useDispatch } from 'react-redux'
 import { AppState } from '../../store'
 import {
-  editCurrentArticle,
   setCurrentArticle,
+  setEditContent,
 } from '../../reducers/Article/actions'
 
 type ContentEditorProps = ScreenProps
@@ -13,6 +13,9 @@ type ContentEditorProps = ScreenProps
 export const ContentEditor: React.FC<ContentEditorProps> = props => {
   const currentArticle = useSelector(
     (state: AppState) => state.ArticleReducer.currentItem
+  )
+  const editArticle = useSelector(
+    (state: AppState) => state.ArticleReducer.editItem
   )
   const dispatch = useDispatch()
   const id = props.navigation.getParam('id')
@@ -23,9 +26,14 @@ export const ContentEditor: React.FC<ContentEditorProps> = props => {
 
   const handleChangeText = React.useCallback(
     (text: string) => {
-      dispatch(editCurrentArticle({ ...currentArticle, content: text }))
+      dispatch(setEditContent(text))
     },
-    [currentArticle.content]
+    [editArticle.content]
   )
-  return <Component handleChangeText={handleChangeText} />
+  return (
+    <Component
+      defaultValue={currentArticle.content}
+      handleChangeText={handleChangeText}
+    />
+  )
 }

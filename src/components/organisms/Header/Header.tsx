@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
 import { ScreenProps } from '../../../types/ComponentProps'
 import { Heading } from '../../../components/atoms/Heading/'
 import { LABELS } from '../../../constants/labels'
+import { TextInput } from 'react-native-gesture-handler'
 
 type HeaderProps = ScreenProps & {
   handleGoToCreateArticle: () => void
@@ -26,9 +27,8 @@ export const Header: React.FC<HeaderProps> = props => {
       )}
       {/* PageName */}
       {props.navigation.state.routeName === 'Editor' ? (
-        <TouchableOpacity onPress={props.handleGoToCreateArticle}>
-          <Heading level={1}>{LABELS.SAVE}</Heading>
-        </TouchableOpacity>
+        <TextInput
+          defaultValue={props.navigation.getParam('title')}></TextInput>
       ) : (
         <Heading level={1}>{props.navigation.state.routeName}</Heading>
       )}

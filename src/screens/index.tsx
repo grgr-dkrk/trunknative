@@ -15,6 +15,13 @@ const AppNavigator = createStackNavigator(
         header: () => <Header navigation={props.navigation} />,
       }),
     },
+    Viewer: {
+      screen: HomeScreen,
+      navigationOptions: props => ({
+        title: props.navigation.getParam('id') || 'no title',
+        header: () => <Header navigation={props.navigation} />,
+      }),
+    },
     Editor: {
       screen: EditorScreen,
       navigationOptions: props => ({

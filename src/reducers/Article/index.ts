@@ -8,11 +8,14 @@ import { ArticleListType } from 'src/types/Article'
 import {
   ADD_ARTICLE,
   REMOVE_ARTICLE,
-  EDIT_ARTICLE,
+  UPDATE_ARTICLE,
   SET_ARTICLE_LIST,
   SET_CURRENT_ARTICLE,
-  EDIT_CURRENT_ARTICLE,
+  UPDATE_CURRENT_ARTICLE,
   INIT_CURRENT_ARTICLE,
+  SET_EDIT_TITLE,
+  SET_EDIT_CONTENT,
+  SET_EDIT_TAGS,
 } from './actionTypes'
 
 export function ArticleReducer(
@@ -30,7 +33,7 @@ export function ArticleReducer(
         ...state,
         items: state.items.filter(item => item.id !== action.payload),
       }
-    case EDIT_ARTICLE:
+    case UPDATE_ARTICLE:
       return {
         ...state,
         items: state.items.reduce<ArticleListType>(
@@ -54,7 +57,7 @@ export function ArticleReducer(
           // TODO FIX_ME case if id is invalid
           initialArticleData,
       }
-    case EDIT_CURRENT_ARTICLE:
+    case UPDATE_CURRENT_ARTICLE:
       return {
         ...state,
         currentItem: { ...state.currentItem, ...action.payload },
@@ -63,6 +66,21 @@ export function ArticleReducer(
       return {
         ...state,
         currentItem: initialArticleData,
+      }
+    case SET_EDIT_TITLE:
+      return {
+        ...state,
+        editItem: { ...state.editItem, title: action.payload },
+      }
+    case SET_EDIT_CONTENT:
+      return {
+        ...state,
+        editItem: { ...state.editItem, content: action.payload },
+      }
+    case SET_EDIT_TAGS:
+      return {
+        ...state,
+        editItem: { ...state.editItem, tags: action.payload },
       }
     default:
       const _: never = action

@@ -3,6 +3,7 @@ import { ArticleListType, ArticleType } from '../../types/Article'
 export type ArticleStateType = {
   items: ArticleListType
   currentItem: ArticleType
+  editItem: Pick<ArticleType, 'title' | 'content' | 'tags'>
 }
 
 export const initialArticleData: Readonly<ArticleType> = {
@@ -36,6 +37,11 @@ export const initialArticleState: ArticleStateType = {
     createdAt: '',
     updatedAt: undefined,
     location: undefined,
+    tags: [],
+  },
+  editItem: {
+    title: '',
+    content: '',
     tags: [],
   },
 }

@@ -7,9 +7,10 @@ import {
   SET_CURRENT_ARTICLE,
   UPDATE_CURRENT_ARTICLE,
   INIT_CURRENT_ARTICLE,
-  SET_EDIT_TITLE,
-  SET_EDIT_CONTENT,
-  SET_EDIT_TAGS,
+  SET_EDITING_TITLE,
+  SET_EDITING_CONTENT,
+  SET_EDITING_TAGS,
+  SET_EDITING_ARTICLE,
 } from './actionTypes'
 
 /**
@@ -58,16 +59,20 @@ export const initCurrentArticle = () => ({
 /**
  * Edit Article Actions
  */
-export const setEditTitle = (payload: ArticleType['title']) => ({
-  type: SET_EDIT_TITLE,
+export const setEditingArticle = (payload: ArticleType['id']) => ({
+  type: SET_EDITING_ARTICLE,
   payload,
 })
-export const setEditContent = (payload: ArticleType['content']) => ({
-  type: SET_EDIT_CONTENT,
+export const setEditingTitle = (payload: ArticleType['title']) => ({
+  type: SET_EDITING_TITLE,
   payload,
 })
-export const setEditTags = (payload: ArticleType['tags']) => ({
-  type: SET_EDIT_TAGS,
+export const setEditingContent = (payload: ArticleType['content']) => ({
+  type: SET_EDITING_CONTENT,
+  payload,
+})
+export const setEditingTags = (payload: ArticleType['tags']) => ({
+  type: SET_EDITING_TAGS,
   payload,
 })
 
@@ -82,6 +87,7 @@ export type ArticleActionTypes =
   | ReturnType<typeof setCurrentArticle>
   | ReturnType<typeof updateCurrentArticle>
   | ReturnType<typeof initCurrentArticle>
-  | ReturnType<typeof setEditTitle>
-  | ReturnType<typeof setEditContent>
-  | ReturnType<typeof setEditTags>
+  | ReturnType<typeof setEditingArticle>
+  | ReturnType<typeof setEditingTitle>
+  | ReturnType<typeof setEditingContent>
+  | ReturnType<typeof setEditingTags>

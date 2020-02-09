@@ -1,13 +1,15 @@
-import { applyMiddleware, createStore } from 'redux';
-import { rootReducers } from './reducers/';
+import { applyMiddleware, createStore, Middleware } from 'redux'
+import { rootReducers } from './reducers/'
+import logger from 'redux-logger'
 
-const middlewares = [];
+const middlewares: Middleware[] = []
 
-// if (process.env.NODE_ENV === 'development') {
-// }
+if (__DEV__) {
+  middlewares.push(logger)
+}
 
-const store = createStore(rootReducers);
+const store = createStore(rootReducers, applyMiddleware(...middlewares))
 
-export type AppState = ReturnType<typeof store.getState>;
+export type AppState = ReturnType<typeof store.getState>
 
-export default store;
+export default store

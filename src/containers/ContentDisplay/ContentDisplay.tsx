@@ -8,10 +8,13 @@ import { setCurrentArticle } from '../../reducers/Article/actions'
 type ContentDisplayProps = ScreenProps
 
 export const ContentDisplay: React.FC<ContentDisplayProps> = props => {
-  const ArticleState = useSelector((state: AppState) => state.ArticleReducer)
+  const currentArticle = useSelector(
+    (state: AppState) => state.ArticleReducer.currentDisplayItem
+  )
   const dispatch = useDispatch()
+  const id = props.navigation.state.routeName
   useEffect(() => {
-    dispatch(setCurrentArticle(ArticleState.items[0].id))
+    dispatch(setCurrentArticle(id))
   }, [])
-  return <Component content={ArticleState.items[0].content} />
+  return <Component content={currentArticle.content} />
 }

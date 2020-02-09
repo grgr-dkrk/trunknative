@@ -13,9 +13,10 @@ import {
   SET_CURRENT_ARTICLE,
   UPDATE_CURRENT_ARTICLE,
   INIT_CURRENT_ARTICLE,
-  SET_EDIT_TITLE,
-  SET_EDIT_CONTENT,
-  SET_EDIT_TAGS,
+  SET_EDITING_TITLE,
+  SET_EDITING_CONTENT,
+  SET_EDITING_TAGS,
+  SET_EDITING_ARTICLE,
 } from './actionTypes'
 
 export function ArticleReducer(
@@ -23,6 +24,14 @@ export function ArticleReducer(
   action: ArticleActionTypes
 ): ArticleStateType {
   switch (action.type) {
+    /**
+     * Article List
+     */
+    case SET_ARTICLE_LIST:
+      return {
+        ...state,
+        items: action.payload,
+      }
     case ADD_ARTICLE:
       return {
         ...state,
@@ -37,22 +46,20 @@ export function ArticleReducer(
       return {
         ...state,
         items: state.items.reduce<ArticleListType>(
-          (items, currentItem) =>
-            currentItem.id === action.payload.id
+          (items, article) =>
+            article.id === action.payload.id
               ? [...items, action.payload.article]
-              : [...items, currentItem],
+              : [...items, article],
           []
         ),
       }
-    case SET_ARTICLE_LIST:
-      return {
-        ...state,
-        items: action.payload,
-      }
+    /**
+     * Article Current Display
+     */
     case SET_CURRENT_ARTICLE:
       return {
         ...state,
-        currentItem:
+        currentDisplayItem:
           state.items.find(item => item.id === action.payload) ||
           // TODO FIX_ME case if id is invalid
           initialArticleData,
@@ -60,27 +67,38 @@ export function ArticleReducer(
     case UPDATE_CURRENT_ARTICLE:
       return {
         ...state,
-        currentItem: { ...state.currentItem, ...action.payload },
+        currentDisplayItem: { ...state.currentDisplayItem, ...action.payload },
       }
     case INIT_CURRENT_ARTICLE:
       return {
         ...state,
-        currentItem: initialArticleData,
+        currentDisplayItem: initialArticleData,
       }
-    case SET_EDIT_TITLE:
+    /**
+     * Article Editing
+     */
+    case SET_EDITING_ARTICLE:
       return {
         ...state,
-        editItem: { ...state.editItem, title: action.payload },
+        editingItem:
+          state.items.find(item => item.id === action.payload) ||
+          // TODO FIX_ME case if id is invalid
+          initialArticleData,
       }
-    case SET_EDIT_CONTENT:
+    case SET_EDITING_TITLE:
       return {
         ...state,
-        editItem: { ...state.editItem, content: action.payload },
+        editingItem: { ...state.editingItem, title: action.payload },
       }
-    case SET_EDIT_TAGS:
+    case SET_EDITING_CONTENT:
       return {
         ...state,
-        editItem: { ...state.editItem, tags: action.payload },
+        editingItem: { ...state.editingItem, content: action.payload },
+      }
+    case SET_EDITING_TAGS:
+      return {
+        ...state,
+        editingItem: { ...state.editingItem, tags: action.payload },
       }
     default:
       const _: never = action

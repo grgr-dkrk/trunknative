@@ -20,6 +20,7 @@ export const INIT_CURRENT_ARTICLE = 'INIT_CURRENT_ARTICLE' as const
  * Edit Article
  */
 // TODO
-export const SET_EDIT_TITLE = 'SET_EDIT_TITLE' as const
-export const SET_EDIT_CONTENT = 'SET_EDIT_CONTENT' as const
-export const SET_EDIT_TAGS = 'SET_EDIT_TAGS' as const
+export const SET_EDITING_ARTICLE = 'SET_EDITING_ARTICLE' as const
+export const SET_EDITING_TITLE = 'SET_EDITING_TITLE' as const
+export const SET_EDITING_CONTENT = 'SET_EDITING_CONTENT' as const
+export const SET_EDITING_TAGS = 'SET_EDITING_TAGS' as const

@@ -11,13 +11,18 @@ type HeaderProps = ScreenProps
 export const Header: React.FC<HeaderProps> = props => {
   const { navigation } = props
   const currentArticle = useSelector(
-    (state: AppState) => state.ArticleReducer.currentItem
+    (state: AppState) => state.ArticleReducer.currentDisplayItem
   )
-  const editArticle = useSelector(
-    (state: AppState) => state.ArticleReducer.editItem
+  const editingArticle = useSelector(
+    (state: AppState) => state.ArticleReducer.editingItem
   )
   const dispatch = useDispatch()
-  const gotoCreateArticle = () => {}
+  const gotoCreateArticle = () => {
+    props.navigation.navigate('Editor', {
+      id: '',
+      title: new Date(),
+    })
+  }
   const gotoEditArticle = () => {
     props.navigation.navigate('Editor', {
       id: currentArticle.id,
@@ -34,12 +39,27 @@ export const Header: React.FC<HeaderProps> = props => {
       {
         text: 'Yes',
         onPress: () => {
+          navigation.goBack()
+        },
+      },
+    ])
+  }
+  const saveArticle = () => {
+    Alert.alert('Save', 'OK?', [
+      {
+        text: 'No',
+        style: 'cancel',
+        onPress: () => {},
+      },
+      {
+        text: 'Yes',
+        onPress: () => {
           dispatch(
             updateArticle({
-              id: currentArticle.id,
+              id: editingArticle.id,
               article: {
-                ...currentArticle,
-                content: editArticle.content,
+                ...editingArticle,
+                content: editingArticle.content,
               },
             })
           )
@@ -47,9 +67,6 @@ export const Header: React.FC<HeaderProps> = props => {
         },
       },
     ])
-  }
-  const saveArticle = () => {
-    navigation.goBack()
   }
   return (
     <Component

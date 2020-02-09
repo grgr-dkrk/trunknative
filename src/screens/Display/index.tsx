@@ -2,10 +2,10 @@ import React from 'react'
 import { ScreenProps } from '../../types/ComponentProps'
 import { ContentDisplay } from '../../containers/ContentDisplay'
 
-type HomeScreenProps = ScreenProps
+type DisplayScreenProps = ScreenProps
 
-const HomeScreen: React.FC<HomeScreenProps> = props => {
+const DisplayScreen: React.FC<DisplayScreenProps> = props => {
   return <ContentDisplay navigation={props.navigation} />
 }
 
-export default HomeScreen
+export default DisplayScreen

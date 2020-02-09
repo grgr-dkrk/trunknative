@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
-import HomeScreen from './Home'
+import DisplayScreen from './Display'
 import { Header } from '../containers/Header/Header'
 import EditorScreen from './Editor'
 import { LABELS } from '../constants/labels'
@@ -9,14 +9,14 @@ import { LABELS } from '../constants/labels'
 const AppNavigator = createStackNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: DisplayScreen,
       navigationOptions: props => ({
         title: LABELS.HOME,
         header: () => <Header navigation={props.navigation} />,
       }),
     },
-    Viewer: {
-      screen: HomeScreen,
+    Display: {
+      screen: DisplayScreen,
       navigationOptions: props => ({
         title: props.navigation.getParam('id') || 'no title',
         header: () => <Header navigation={props.navigation} />,

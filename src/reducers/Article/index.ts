@@ -80,10 +80,11 @@ export function ArticleReducer(
     case SET_EDITING_ARTICLE:
       return {
         ...state,
-        editingItem:
-          state.items.find(item => item.id === action.payload) ||
+        editingItem: state.items.find(item => item.id === action.payload) || {
           // TODO FIX_ME case if id is invalid
-          initialArticleData,
+          ...initialArticleData,
+          id: action.payload,
+        },
       }
     case SET_EDITING_TITLE:
       return {

@@ -4,7 +4,10 @@ import { ScreenProps } from '../../types/ComponentProps'
 import { useSelector, useDispatch } from 'react-redux'
 import { Alert } from 'react-native'
 import { AppState } from 'src/store'
-import { updateArticle } from '../../reducers/Article/actions'
+import {
+  updateArticle,
+  updateCurrentArticle,
+} from '../../reducers/Article/actions'
 
 type HeaderProps = ScreenProps
 
@@ -45,28 +48,17 @@ export const Header: React.FC<HeaderProps> = props => {
     ])
   }
   const saveArticle = () => {
-    Alert.alert('Save', 'OK?', [
-      {
-        text: 'No',
-        style: 'cancel',
-        onPress: () => {},
-      },
-      {
-        text: 'Yes',
-        onPress: () => {
-          dispatch(
-            updateArticle({
-              id: editingArticle.id,
-              article: {
-                ...editingArticle,
-                content: editingArticle.content,
-              },
-            })
-          )
-          navigation.goBack()
+    dispatch(
+      updateArticle({
+        id: editingArticle.id,
+        article: {
+          ...editingArticle,
+          content: editingArticle.content,
         },
-      },
-    ])
+      })
+    )
+    dispatch(updateCurrentArticle(editingArticle))
+    navigation.goBack()
   }
   return (
     <Component

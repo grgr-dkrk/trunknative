@@ -1,14 +1,14 @@
 import React from 'react'
 import { ScreenProps } from '../../types/ComponentProps'
-import { ContentDisplay } from '../../containers/ContentDisplay'
 import { ContentWrapper } from '../ContentWrapper'
+import { ArticleList } from 'src/containers/ArticleList'
 
 type DisplayScreenProps = ScreenProps
 
 const DisplayScreen: React.FC<DisplayScreenProps> = props => {
   return (
     <ContentWrapper navigation={props.navigation}>
-      <ContentDisplay navigation={props.navigation} />
+      <ArticleList navigation={props.navigation} />
     </ContentWrapper>
   )
 }

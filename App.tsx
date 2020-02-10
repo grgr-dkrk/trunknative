@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Provider } from 'react-redux'
-import NavContainer from './src/screens'
+import { AppContainer } from './src/screens'
 import store from './src/store'
 
 const App = () => {
   return (
     <Provider store={store}>
-      <NavContainer />
+      <AppContainer />
     </Provider>
   )
 }

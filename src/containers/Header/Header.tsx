@@ -8,6 +8,9 @@ import {
   updateArticle,
   updateCurrentArticle,
 } from '../../reducers/Article/actions'
+// @ts-ignore
+import uuid from 'uuid'
+import { format } from 'date-fns'
 
 type HeaderProps = ScreenProps
 
@@ -22,8 +25,8 @@ export const Header: React.FC<HeaderProps> = props => {
   const dispatch = useDispatch()
   const gotoCreateArticle = () => {
     props.navigation.navigate('Editor', {
-      id: '',
-      title: new Date(),
+      id: uuid(),
+      title: format(new Date(), 'dd_MM_yyyy'),
     })
   }
   const gotoEditArticle = () => {

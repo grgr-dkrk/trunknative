@@ -5,6 +5,7 @@ import DisplayScreen from './Display'
 import { Header } from '../containers/Header/Header'
 import EditorScreen from './Editor'
 import { LABELS } from '../constants/labels'
+import { ArticleList } from '../containers/ArticleList'
 
 const AppNavigator = createStackNavigator(
   {
@@ -29,8 +30,14 @@ const AppNavigator = createStackNavigator(
         header: () => <Header navigation={props.navigation} />,
       }),
     },
+    ArticleList: {
+      screen: ArticleList,
+      navigationOptions: props => ({
+        header: () => <Header navigation={props.navigation} />,
+      }),
+    },
   },
   {}
 )
 
-export default createAppContainer(AppNavigator)
+export const AppContainer = createAppContainer(AppNavigator)

@@ -34,7 +34,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.7",
     "@types/redux-thunk": "^2.1.0",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^25.2.3",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
     "react-test-renderer": "16.9.0",

@@ -23,7 +23,7 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.12.10",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.7",
     "@types/jest": "^24.0.18",
